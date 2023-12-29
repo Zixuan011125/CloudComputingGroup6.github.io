@@ -326,7 +326,7 @@ function displayReminders() {
             listItem.innerHTML =
                 `<strong>${event.title}</strong> - 
                 ${event.description} on 
-                ${formattedDate}`;
+                <strong>${formattedDate}</strong>`;
 
             // Create a container for buttons to align them
             let buttonContainer = document.createElement("div");
@@ -334,7 +334,7 @@ function displayReminders() {
             // Add an "Edit" button for each reminder item
             let editButton = document.createElement("button");
             editButton.className = "edit-event";
-            editButton.textContent = "Edit";
+            editButton.innerHTML = '<i class="fas fa-edit"></i> Edit'; // Add this line for the icon
             editButton.onclick = function () {
                 editEvent(event.id);
             };
@@ -342,7 +342,7 @@ function displayReminders() {
             // Add a "Delete" button for each reminder item
             let deleteButton = document.createElement("button");
             deleteButton.className = "delete-event";
-            deleteButton.textContent = "Delete";
+            deleteButton.innerHTML = '<i class="fas fa-trash-alt"></i> Delete'; // Add this line for the icon
             deleteButton.onclick = function () {
                 deleteEvent(event.id);
             };
@@ -536,7 +536,7 @@ function displayFilteredEvents(filteredEvents) {
             listItem.innerHTML =
                 `<strong>${event.title}</strong> - 
                 ${event.description} on 
-                ${formatDate(event.date)}`;
+                <strong>${formatDate(event.date)}</strong>`;
             reminderList.appendChild(listItem);
         }
     }
@@ -544,12 +544,10 @@ function displayFilteredEvents(filteredEvents) {
 
 // Function to format a date as "dd-mm-yyyy"
 function formatDate(dateString) {
-    let eventDate = new Date(dateString);
-    let day = eventDate.getDate().toString().padStart(2, '0');
-    let month = (eventDate.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
-    let year = eventDate.getFullYear();
-    return `${day}-${month}-${year}`;
+    const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+    return new Date(dateString).toLocaleDateString('en-GB', options);
 }
+
 
 // Function to print tasks in table form
 function printTasks() {
@@ -560,7 +558,38 @@ function printTasks() {
     let printWindow = window.open('', '_blank');
 
     // Write the content to the new window
-    printWindow.document.write('<html><head><title>Task List</title></head><body>');
+    printWindow.document.write('<html><head><title>Task List</title>');
+
+    // Add the favicon link
+    printWindow.document.write('<link rel="icon" href="logo.png" type="image/png">');
+
+    // Add CSS styles for the printed table
+    printWindow.document.write(`
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+            }
+            h2 {
+                text-align: center;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+            th, td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+            }
+            th {
+                background-color: #f2f2f2;
+            }
+        </style>
+    `);
+
+    printWindow.document.write('</head><body>');
+
     printWindow.document.write('<h2>Task List</h2>');
 
     // Create a table and its header
