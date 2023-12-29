@@ -17,7 +17,13 @@
       justify-content: center;
       height: 100vh;
       background-color: #f4f4f4;
+      opacity: 0;
+      transition: opacity 0.75s ease-in-out;
     }
+
+    body.loaded {
+    opacity: 1;
+}
 
     /* Header styles */
     header {
@@ -123,7 +129,7 @@
     }
   </style>
 
-  <link rel="icon" href="logo.jpg">
+  <link rel="icon" href="logo.png">
 </head>
 
 <body>
@@ -206,5 +212,14 @@
 
   </script>
 </body>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+  // Add the "loaded" class after a short delay
+  setTimeout(function () {
+      document.body.classList.add("loaded");
+  }, 200); // Adjust the delay (in milliseconds) based on your preference
+});
+</script>
 
 </html>
