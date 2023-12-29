@@ -1,8 +1,14 @@
 /* General styling for the entire page */
 body {
     font-family: Arial, sans-serif;
-    background-color: white;
+    background-color: #f9f9f9;
     margin: 0;
+    opacity: 0;
+    transition: opacity 0.75s ease-in-out;
+} 
+
+body.loaded {
+    opacity: 1;
 }
  
 .wrapper {
@@ -17,7 +23,7 @@ body {
     max-width: 900px;
     margin: 0 auto;
     overflow: auto;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
     display: flex;
     justify-content: space-between;
 }
@@ -28,6 +34,12 @@ body {
     background: #f5f5f5;
     margin: 20px 0;
     border: 1px solid #ccc;
+    transition: background-color 0.3s; /* Add a transition effect for background color change */
+}
+
+#event-section:hover {
+    background-color: #e5e5e5; /* Change to the desired color */
+    transition-delay: 0.15s; /* Add a delay to the transition */
 }
  
 .container-calendar #left h1 {
@@ -101,6 +113,13 @@ body {
     background: #f5f5f5;
     margin: 20px 0;
     border: 1px solid #ccc;
+    transition: background-color 0.3s; /* Add a transition effect for background color change */
+}
+
+/* Reminder section styling */
+#reminder-section:hover {
+    background-color: #e5e5e5; /* Change to the desired color */
+    transition-delay: 0.15s; /* Add a delay to the transition */
 }
  
 #reminder-section h3 {
@@ -115,7 +134,7 @@ body {
 }
  
 #reminderList li {
-    margin: 5px 0;
+    margin: 20px 0;
     font-size: 16px;
 }
  
@@ -128,8 +147,36 @@ body {
     cursor: pointer;
     margin-left: 10px;
     align-items: right;
+    margin-top: 8px;
 }
- 
+
+/* Style for the edit button */
+.edit-event {
+    background: rgb(48, 144, 241); /* Match the background color of the delete button */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-left: 10px;
+    align-items: right;
+    margin-top: 8px; 
+}
+
+/* Style for the add button */
+#addEvent:hover {
+    background-color: darkgreen;
+}
+
+/* Style for the delete button */
+.delete-event:hover {
+    background-color: darkred;
+}
+
+/* Style for the edit button */
+.edit-event:hover {
+    background-color: darkblue;
+}
+
 /* Buttons in the calendar */
 .button-container-calendar button {
     cursor: pointer;
@@ -235,7 +282,7 @@ body {
 
 .fa-search {
     padding: 8px;
-    background-color: #007bff;
+    background-color: #343536;
     color: #fff;
     cursor: pointer;
     border: none;
@@ -246,4 +293,41 @@ body {
 .disabled-date {
     color: #ccc;
     pointer-events: none;
+}
+
+#printButton {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#printButton:hover {
+    background-color: #0056b3;
+}
+
+/* Style for the logout button */
+.logout-section {
+    text-align: right;
+}
+
+#logoutButton {
+    background: #d9534f; /* Choose a color for the button */
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-bottom:20px;
+}
+
+#logoutButton i {
+    margin-right: 6px;
+}
+
+#logoutButton:hover {
+    background: #C9302C;
 }
